@@ -1,4 +1,4 @@
-# Today I Learned by *[Nombre]*
+# Today I Learned by *[Diego Aaron Figueroa Campos]*
 
 Ruby and Rails official documentation reading personal journal
 
