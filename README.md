@@ -35,3 +35,16 @@ A new RoR project created has a directory with several auto-generated files and 
 |test        |It contains unit tests, other test apparatus and fixtures                                                 |
 |tmp         |It contains temporary files like cache and pid files                                                      |
 |vendor      |A place for all third-party code. In a typical Rails application this includes vendored gems              |
+
+## Week 1
+
+### Tue 28, July 2020 [RoR Controllers]
+The Rails controller is the logical center of your application. It coordinates the interaction between the user, the views, and the model. The controller is also a home to a number of important ancillary services.
+
+* It is responsible for routing external requests to internal actions. It handles people-friendly URLs extremely well.
+
+* It manages caching, which can give applications orders-of-magnitude performance boosts.
+
+* It manages helper modules, which extend the capabilities of the view templates without bulking up their code.
+
+* It manages sessions, giving users the impression of an ongoing interaction with our applications.
