@@ -62,3 +62,9 @@ The Rails controller is the logical center of your application. It coordinates t
 * It manages helper modules, which extend the capabilities of the view templates without bulking up their code.
 
 * It manages sessions, giving users the impression of an ongoing interaction with our applications.
+
+### Fri 29, July 2020 [RoR Views]
+Writing all the HTML code directly to the actions (the controller methods) would be quite cumbersome. The solution is to use views. They are the visual representation of the data, everything that has to do with the graphical interface here. Neither the model nor the controller is concerned with how the data will look, that responsibility is the controller of the view.
+
+Views are files located in the app / views folder. The interesting thing about views is that we can mix HTML code with Ruby code.
+
