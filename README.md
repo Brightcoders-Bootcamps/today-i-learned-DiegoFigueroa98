@@ -63,8 +63,33 @@ The Rails controller is the logical center of your application. It coordinates t
 
 * It manages sessions, giving users the impression of an ongoing interaction with our applications.
 
-### Fri 29, July 2020 [RoR Views]
+### Wed 29, July 2020 [RoR Views]
 Writing all the HTML code directly to the actions (the controller methods) would be quite cumbersome. The solution is to use views. They are the visual representation of the data, everything that has to do with the graphical interface here. Neither the model nor the controller is concerned with how the data will look, that responsibility is the controller of the view.
 
 Views are files located in the app / views folder. The interesting thing about views is that we can mix HTML code with Ruby code.
 
+### Thu 30, July 2020 [RoR Architecture Part 1]
+#### Rails Components
+Ruby on Rails uses a concept called a configuration convention so that the structure of all projects is similar and we write less code.
+
+The most important components of Ruby on Rails are the following:
+
+* The **router**, which is configured in the `config/routes.rb` file and allows us to associate the **routes** with the **actions**.
+* The **controllers**, which are located in the `app/controllers` folder and store the **actions**.
+* The **views**, found in `app/views`, allow us to define the HTML code that is rendered from the **controllers**.
+* A component that you don't know yet is **ActiveRecord**, which will allow us to interact with the database.
+* The **console application**, which will allow us to save development time.
+
+### Fri 31, July 2020 [RoR Architecture Part 2]
+#### Router
+The router is the component that decides which controller and which method will process an HTTP request. It is configured in the `config/routes.rb` file.
+
+There are several ways to define the routes. I test the following:
+
+`get '/home', to: 'pages#home'`
+
+In this example, we are saying that when someone makes a request to `GET/home`, the index method of the PagesController controller (located in `app/controllers/pages_controller.rb`) is the one in charge of processing the request.
+
+Another equivalent way is to use the operator => (hashrocket) in the following way:
+
+`get '/home' => 'pages#home'`
