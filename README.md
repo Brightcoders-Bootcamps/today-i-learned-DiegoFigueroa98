@@ -93,3 +93,53 @@ In this example, we are saying that when someone makes a request to `GET/home`, 
 Another equivalent way is to use the operator => (hashrocket) in the following way:
 
 `get '/home' => 'pages#home'`
+
+### Mon 03, August 2020 [RoR Architecture Part 3]
+#### Controllers
+Controllers are Ruby classes with methods that are going to process HTTP requests. 
+
+```
+class PagesController < ApplicationController
+  def home
+    render html: "<h1>Hello BrightCoders</h1>".html_safe
+  end
+end
+```
+En este ejemplo estamos renderizando el HTML `<h1>Hello BrightCoders</h1>`.
+El método `html_safe` es necesario para decirle a Rails que no escape el código HTML.
+
+### Tue 04, August 2020 [RoR Architecture Part 4]
+#### Views
+By convention Rails renders a default view that must be found in a specific location and must be called in a specific way:
+
+* The file name must be the same as the method followed by `.html.erb`.
+* It must be located in the `app/views` folder inside a folder that is called the same as the controller.
+
+For example, the home method of the following **controller** will try to render the view `app/views/pages/home.html.erb`:
+
+```
+class PagesController < ApplicationController
+  def home
+  end
+end
+```
+
+### Wed 05, August 2020 [RoR Architecture Part 5]
+#### Passing controller information into view
+
+When you define an **instance variable** (the ones that start with @) in the action, this variable will be available in the view. For example:
+
+```
+class PagesController < ApplicationController
+  def home
+    @name = "Diego"
+  end
+end
+```
+
+The `@name` variable will be available in the view (`app/views/pages/home.html.erb`) and we can display it as follows:
+
+```
+<h1>Hello <%= @name %></h1>
+```
+The `<%=` tag tells **Rails** that we want to display the variable on the screen. One of the most common mistakes is forgetting to add the equal `=` and not understanding why the variable does not appear on the screen.
