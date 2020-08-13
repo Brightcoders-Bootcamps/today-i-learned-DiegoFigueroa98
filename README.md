@@ -143,3 +143,66 @@ The `@name` variable will be available in the view (`app/views/pages/home.html.e
 <h1>Hello <%= @name %></h1>
 ```
 The `<%=` tag tells **Rails** that we want to display the variable on the screen. One of the most common mistakes is forgetting to add the equal `=` and not understanding why the variable does not appear on the screen.
+
+### Thu 06, August 2020 [RoR Architecture Part 6]
+#### Query String
+
+The **query string** is the set of properties that come after the question mark (`?`) Of a URL. **Rails** automatically converts properties into the `params` hash that you can access from the **controller** or the **view**.
+
+For example, if we want to obtain the value of a property called `name` we would use` params [: name] `. Modify `app/views/pages/home.html.erb` to read as follows:
+
+```
+<h1> Hello <% = params [: name]%> </h1>
+```
+
+Now go to http: // localhost: 3000 /? Name = Diego. You should see "Hello Diego" on the screen. Try changing the **query string** with other names.
+
+The **query string** values always arrive as text strings. If you want another type, you must convert it manually. For example:
+
+```
+<h1> In five years you will have <% = params [: age] .to_i + 5%> years </h1>
+```
+
+In this case we are converting the `age` property to an integer so we can add it to` 5`.
+
+### Fri 07, August 2020 [RoR Architecture Part 7]
+#### ActiveRecord
+
+**ActiveRecord** is the layer that allows us to access and manipulate the information in the database without having to write [SQL (Structured Query Language)] (SQL (Structured Query Language)).
+
+#### The console application
+
+**Ruby on Rails** comes with a powerful console application that allows us, among other things, to generate code through commands called **generators**.
+
+For example:
+
+* `rails new` allows us to create a new application.
+* `rails server` allows us to start the server.
+* `rails generate controller` allows us to create a controller.
+
+### Mon 10, August 2020 [RoR Routes]
+#### Routes
+The routes are defined in the file `config/routes.rb`.
+
+Each route is made up of the following elements:
+
+* The **HTTP verb**.
+* The **path**.
+* The **controller** and **method (action)** that will process the matching request.
+
+For example, the following path:
+
+```
+get '/pages/home', to: 'pages # home'
+```
+
+* Use the verb `GET`.
+* Use the path `/pages/home`
+* The `home` method of the` pages_controller.rb` controller will handle the action.
+
+The following are two other ways you can define the same route:
+
+```
+get '/ pages / home' => 'pages # home'
+get '/ pages / home' # Rails infers controller and path method
+```
