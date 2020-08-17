@@ -206,3 +206,124 @@ The following are two other ways you can define the same route:
 get '/ pages / home' => 'pages # home'
 get '/ pages / home' # Rails infers controller and path method
 ```
+
+### Tue 11, August 2020 [RoR Routes Part 2]
+#### Path variables
+
+It is possible to define variables in the path of the route to create "dynamic routes". For example, the following path uses a variable named `:name` to match any path that has the structure `/hello/<any_string>`:
+
+```
+get '/ hello /: name', to: "pages # hello"
+```
+
+In the controller we use the hash `params` to obtain the value of the variable `:name`:
+
+```
+class PagesController <ApplicationController
+  def hello
+    @name = params [: name]
+  end
+end
+```
+
+Although in the view we can also access the hash `params`, in general it is recommended to pass the information through **instance variables**.
+
+### Wed 12, August 2020 [RoR Routes Part 3]
+#### Naming the routes
+
+You can give each path a name so you don't have to use the path (e.g. `/pages/home`) in links and redirects.
+
+The name is given with the option `as` as shown in the following example:
+
+```
+get '/ pages / home', to: 'pages # home', as: "home"
+```
+
+That way, we can now use the name followed by `_path` or` _url` (e.g. `home_path` or` home_url`).
+
+```
+home_path # / pages / home
+home_url # http: // localhost: 3000 / pages / home
+```
+
+In general use `_path` unless you are sharing a link in emails or want to show the full URL.
+
+You can use the path name in links like this:
+
+```
+<a href="<%= home_path %> "> Go Home </a>
+```
+
+In fact Rails comes with a helper method that we will see later called `link_to` that allows you to create links in the following way:
+
+```
+<% = link_to "Go home", home_path%>
+```
+
+The latter is the recommended way to make internal links in the application.
+
+### Thu 13, August 2020 [RoR Routes Part 4]
+#### Listing the routes
+
+If you want to see a list of all the routes in the application you can use the command `rails routes` from the console (or `rake routes` if you are using a Rails version lower than 5):
+
+```
+$ rails routes
+    Prefix Verb URI Pattern Controller # Action
+pages_home GET /pages/home(.:format) pages # home
+```
+
+The `Prefix` is the name of the path. By default Rails gives the path a name even if we haven't used `as`.
+
+### Fri 14, August 2020 [RoR Layouts and Rendering]
+#### Listing the routes
+By default all views use the layout located in `app/views/layouts/application.html.erb`. The changes you make to that file will affect all views.
+
+In general, within this file there are elements that apply to all views of the application such as the main menu, the footer of the page, etc.
+
+Inside the file you will find the word `yield` which is the line that is replaced by the content of each view.
+
+### Mon 17, August 2020 [RoR Layouts and Rendering Part 2]
+#### Changing the layout
+
+There are several ways to change the layout to use when rendering a view:
+
+##### 1. Creating a layout that has the same name as the controller
+
+By default Rails looks for a file in `app/views/layouts` that has the same name as the controller.
+
+For example, if the controller is `pages_controller.rb`, Rails looks for the file `app/views/layouts/pages.html.erb` and uses that file as the layout for all actions in that controller.
+
+Otherwise use `application.html.erb`.
+
+##### 2. Changing the layout in the controller
+
+You can define the layout that all the actions of a controller will use in the following way:
+
+```
+class PagesController <ApplicationController
+  layout "mi_layout"
+
+  ...
+end
+```
+
+The line `layout" my_layout "` is telling Rails to use the file `app/views/layouts/my_layout.html.erb` as the layout of all actions in that controller.
+
+You can add conditions so that the layout only applies to some actions or excludes others. For example, with the following line the layout `my_layout.html.erb` will only apply to the actions` index` and `new` of the controller.
+
+```
+layout "my_layout", only: [: index,: new]
+```
+
+You can also exclude actions. The following line will use the `my_layout.html.erb` layout for all actions except` index`:
+
+```
+layout "my_layout", except: [: index]
+```
+
+You can prevent controller actions from using a layout with the following line:
+
+```
+layout false
+```
