@@ -487,7 +487,7 @@ There is an equivalent but shorter way:
 book1 = Book.create (title: "The Pragmatic Programmer", author: "Andrew Hunt, David Thomas", publication_date: "1999-10-20", price: 31.19)
 ```
 
-### Wed 26, August 2020 [RoR Models Part 4]
+### Wed 26, August 2020 [RoR Models Part 5]
 #### Finding specific records
 
 When you create a record, the database automatically assigns it a unique `id` that you can use to find that record through the` find` method.
@@ -499,7 +499,7 @@ book.author # => Andrew Hunt and David Thomas
 book.price # => 31.19
 ```
 
-### Thu 27, August 2020 [RoR Models Part 4]
+### Thu 27, August 2020 [RoR Models Part 6]
 #### Updating records
 
 To update the information of a record you can use the `save` method again:
@@ -524,7 +524,7 @@ It is also possible to update multiple records at once using `update_all`:
 Book.update_all (price: 1000)
 ```
 
-### Fri 28, August 2020 [RoR Models Part 4]
+### Fri 28, August 2020 [RoR Models Part 7]
 #### Deleting records
 
 To delete records use the `destroy` method:
@@ -534,7 +534,7 @@ book = Book.find (1)
 book.destroy
 ```
 
-### Mon 31, August 2020 [RoR Models Part 4]
+### Mon 31, August 2020 [RoR Models Part 8]
 #### Listing records
 
 ```
